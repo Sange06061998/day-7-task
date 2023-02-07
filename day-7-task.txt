@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script src="script.js"></script>
+</html>
+	
+//Print the following details name, capital, flag using forEach function.
+	
+		
+var request=new XMLHttpRequest();
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    data.forEach(printData =>{
+        console.log(printData.name.common,printData.capital,printData.flags.svg);
+    })
+}
+
+//Get all the countries with population of less than 2 lacs using Filter function
+
+var request=new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    data.filter(printData =>{
+        if(printData.population<200000){
+            return printData.population
+        }
+        console.log(printData.population,printData.name.common);
+    })
+}
+
+//get all the countries from the asia continent /region using filter method;
+
+var request=new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    data.filter(printdata =>{
+        if(printdata.region=='asia'){
+            return printdata.region
+        }
+        console.log(printdata.region);
+    })
+}
+
+//Print the country which use US Dollars as currency.
+
+
+var request=new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    data.filter(printdata =>{
+        if(printdata.currencies=='US Dollars'){
+            return printdata.currencies;
+        }
+        console.log(printdata.name.common);
+    })
+}
+
+//Print the total population of countries using reduce function;
+
+var request=new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    var result=data.reduce((acc,element)=>{
+        return acc+element.population
+    })
+    console.log( result)
+}
