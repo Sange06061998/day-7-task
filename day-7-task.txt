@@ -9,7 +9,7 @@
 <body>
 
 </body>
-<script src="script.js"></script>
+<script src="script.js"></scrip
 </html>
 	
 //Print the following details name, capital, flag using forEach function.
@@ -23,7 +23,7 @@ request.send();
 request.onload = function () {
     var data = JSON.parse(this.responseText);
     data.forEach(printData =>{
-        console.log(printData.name.common,printData.capital,printData.flags.svg);
+        console.log(printData.name.common,printData.region,printData.flags.svg);
     })
 }
 
@@ -95,6 +95,9 @@ request.send();
 request.onload = function () {
     var data = JSON.parse(this.responseText);
     var result=data.reduce((acc,element)=>{
+    if(typeof acc==='object'){
+    return acc.population+element.population}
+    }
         return acc+element.population
     })
     console.log( result)
